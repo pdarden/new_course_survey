@@ -1,10 +1,9 @@
-class MorningSurveyController < ApplicationController
+class MorningSurveysController < ApplicationController
 
 def new
-    binding.pry
+    # binding.pry
     @number = 1
     @survey_questions = get_json
-    # @question_group = QuestionGroup.new(:survey_title => @survey_questions["survey_title"])
     @page = MorningSurvey.new#(:survey_title => @survey_questions["survey_title"])
     @question_array = []
     @option_array = []
@@ -24,15 +23,24 @@ def new
 
   def create
     @morning_survey = MorningSurvey.create morning_params
-    # @question_group = QuestionGroup.new(survey_params)
-    # @question = @question_group.questions.build
-    # @answer = @question.options.build
     if @morning_survey.save
       # format.json { render action: }
-      redirect_to page_path
+      redirect_to morning_survey_path @morning_survey
     else
       render :new
     end
+  end
+
+  def show
+    # p morning_params
+    @morning_survey = MorningSurvey.last
+    p @morning_survey
+  end
+
+   private
+
+  def morning_params
+    params.require(:morning_survey).permit(:question, :answer)
   end
 
 end

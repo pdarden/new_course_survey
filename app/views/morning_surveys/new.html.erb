@@ -1,32 +1,29 @@
 
 <h2><%= @survey_questions["survey_title"] %></h2>
 
-<% form_for MorningSurvey.new do |f| %>
 <ul>
+
+<%= form_for MorningSurvey.new do |f| %>
+<% answered_questions_array = [] %>
+<% answered_answers_array = [] %>
 <% @question_array.each_with_index do |question, index| %>
 <li>
-<%= f.label question %>
-    <%= f.text_field :question, :value => question %>
+<%= f.label "question", question %>
+    <% answered_questions_array << question %>
   <% @option_array[index][0].each do |k,v| %>
 
-    <span><%= f.label v %>
-    <%= f.check_box :answer, :value => v %></span>
+    <span><%= f.label "v", v %>
+      <%= shma = f.check_box :answer, :value => v %>
+    <% answered_answers_array << shma %></span>
 
-    <%= f.submit "submit" %>
 <%end%>
 </li>
 <%end%>
+    <%= f.hidden_field :question, :value => answered_questions_array %>
+    <%= f.hidden_field :answer, :value => answered_answers_array %>
+    <%= f.submit "submit" %>
 <%end%>
 </ul>
-
-<% @question_array.each_with_index do |question, index| %>
-    <%=  question %>
-  <% @option_array[index][0].each do |k,v| %>
-
-    <%= v %>
-
-<%end%>
-<%end%>
 
 <%# form_for @question_group, url: new_page_path do |f| %>
 
