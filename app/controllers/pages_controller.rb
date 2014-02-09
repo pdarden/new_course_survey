@@ -10,8 +10,11 @@ class PagesController < ApplicationController
   end
 
   def create
-    @survey = Survey.new survey_params
-    if @survey.save
+    @question_group = QuestionGroup.new survey_params
+    @question = @question_group.questions.build
+    @answer = @question.answers.build
+    if @question_group.save
+      format.json { render action:}
       redirect_to root_path
     else
       render :new
@@ -21,7 +24,7 @@ class PagesController < ApplicationController
   private
 
   def survey_params
-    params.require(:survey).permit(:json_input, :json_output)
+    params.require(:question_group).permit(:survey_title)
   end
 
 end
