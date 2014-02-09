@@ -1,10 +1,7 @@
-class PagesController < ApplicationController
+class MorningSurveyController < ApplicationController
 
-  def index
-    @survey = {blamo: "aslfkj", bah: "bam"}
-  end
-
-  def new
+def new
+    binding.pry
     @number = 1
     @survey_questions = get_json
     # @question_group = QuestionGroup.new(:survey_title => @survey_questions["survey_title"])
@@ -23,7 +20,6 @@ class PagesController < ApplicationController
       end
       end
     end
-    # binding.pry
   end
 
   def create
@@ -37,28 +33,6 @@ class PagesController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-    @question_group = QuestionGroup.last
-  end
-
-  private
-
-  def survey_params
-    params.require(:question_group).permit(:survey_title)
-  end
-
-  def morning_params
-    params.require(:morning_survey).permit(:question, :answer)
-  end
-
-  def question_params
-    params.require(:question).permit(:inquiry)
-  end
-
-  def option_params
-      params.require(:option).permit(:response)
   end
 
 end
