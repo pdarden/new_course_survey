@@ -1,7 +1,7 @@
 
 <h2><%= @survey_questions["survey_title"] %></h2>
 
-<% form_for @morning_survey,:url => 'pages#create' do |f| %>
+<% form_for @morning_survey,url: new_page_path do |f| %>
 <ul>
 <% @question_array.each_with_index do |question, index| %>
 <li>
