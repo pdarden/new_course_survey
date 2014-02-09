@@ -5,15 +5,14 @@
   <% if surveytitle.kind_of?(String) %>
     <%= surveytitle %>
   <%else%>
-    <% surveytitle.each do |stuff| %>
-      <% stuff.each do |k,v| %>
-        <% if v.kind_of?(String) %>
-          <%= v %>
-        <%else%>
-          <% if v.kind_of?(Array) %>
-          <% v.each do |os, option| %>
-            <%= option %>
-          <%end%>
+    <% surveytitle.each do |all_questions| %>
+      <% all_questions.each do |k,q| %>
+        <% q.each do |q,o| %>
+          <%= q %>
+          <% o.each do |o, options| %>
+            <% options.each do |k,v| %>
+              <%= v %>
+            <%end%>
           <%end%>
         <%end%>
       <%end%>
