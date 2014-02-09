@@ -3,29 +3,41 @@
 
  "questions":[
 
-  {"question A":"Do you have financial savings (independent of your husband or not)?"},
-  {"options A": {
-    "option 1":"yes",
-    "option 2":"no"
-    }},
+  {"question A":
+    {"Do you have financial savings (independent of your husband or not)?":
+      { "options A": {
+        "option 1":"yes",
+        "option 2":"no"
+        }
+      }
+    }
+  },
 
-  {"question B":"How many hours a day do you spend collecting resources (e.g., water, firewood, etc.)?"},
-  {"options B": {
-    "option 1":"0",
-    "option 2":"1",
-    "option 3":"2",
-    "option 4":"5",
-    "option 5":"7",
-    "option 6":"9",
-    "option 7":"10",
-    "option 8":"18"
-    }},
+  {"question B":
+    {"How many hours a day do you spend collecting resources (e.g., water, firewood, etc.)?":
+      { "options B": {
+        "option 1":"0",
+        "option 2":"1",
+        "option 3":"2",
+        "option 4":"5",
+        "option 5":"7",
+        "option 6":"9",
+        "option 7":"10",
+        "option 8":"18"
+        }
+      }
+    }
+  },
 
-  {"question C":" What is your primary source of income?"},
-  {"options C": {
-    "option 1":"thingy",
-    "option 2":"place",
-    "option 3":"selling my body for sex"
-    }}
+  {"question C":
+    {"What is your primary source of income?":
+      { "options C": {
+        "option 1":"thingy",
+        "option 2":"place",
+        "option 3":"selling my body for sex"
+        }
+      }
+    }
+  }
  ]
 }
