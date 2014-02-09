@@ -1,32 +1,40 @@
 
+<h2><%= @survey_questions["survey_title"] %></h2>
 
-<% form_for @question_group, url: new_page_path do |f| %>
+<% form_for @morning_survey,:url => 'pages#create' do |f| %>
+<ul>
+<% @question_array.each_with_index do |question, index| %>
+<li>
+<%= f.label question %>
+    <% f.hidden_field :question, question %>
+  <% @option_array[index][0].each do |k,v| %>
 
-<% @survey_questions.each do |k,surveytitle| %>
-  <% if surveytitle.kind_of?(String) %>
-    <%= surveytitle %>
-    <%= f.hidden_field @question, :value => surveytitle %>
-  <%else%>
-    <p><% surveytitle.each do |all_questions| %>
-      <% all_questions.each do |k,q| %>
-        <% q.each do |q,o| %>
-        <%= f.fields_for @questions do |builder| %>
-          <%= f.hidden_field @question, :value => q, :f => builder %></p>
-          <%end%>
-          <p><% o.each do |o, options| %>
-              <% @array = [] %>
-            <% options.each do |k,v| %>
-              <% @array << [k,v] %>
+    <span><%= f.label v %>
+    <%= f.check_box v %></span>
 
-        <%end%>
-            <%= f.select @answer, @array %>
-            <%end%></p>
-        <%end%>
-      <%end%>
-    <%end%>
-  <%end%>
+    <%= f.submit "submit" %>
 <%end%>
+</li>
+<%end%>
+<%end%>
+</ul>
+<ul>
+<% @question_array.each_with_index do |question, index| %>
+<li>
+<%= label_tag question %>
+    <% hidden_field_tag question %>
+  <% @option_array[index][0].each do |k,v| %>
 
-<%= f.submit "submit" %>
+    <span><%= label_tag v %>
+    <%= check_box_tag v %></span>
 
-<% end %>
+<%end%>
+</li>
+<%end%>
+</ul>
+
+<%= link_to 'submit', pages_path(:question => "f", :answer => "this")%>
+
+<%# form_for @question_group, url: new_page_path do |f| %>
+
+
