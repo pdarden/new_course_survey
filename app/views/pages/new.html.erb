@@ -1,0 +1,12 @@
+
+
+
+<% @survey_questions.each do |k,v| %>
+<%= k %>
+<%= v %>
+<%end%>
+<% form_for @survey, url: new_page_path do |f| %>
+
+<%= f.submit "submit" %>
+
+<% end %>

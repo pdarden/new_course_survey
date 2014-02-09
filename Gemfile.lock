@@ -187,6 +187,7 @@ DEPENDENCIES
   foundation-rails
   jbuilder (~> 1.2)
   jquery-rails
+  json
   launchy
   meta_request
   nyan-cat-formatter
