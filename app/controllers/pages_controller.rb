@@ -5,7 +5,9 @@ class PagesController < ApplicationController
   end
 
   def new
-    @survey = Survey.new
+    @question_group = QuestionGroup.new
+    @question = @question_group.questions.new
+    @answer = @question.options.new
     @survey_questions = get_json
   end
 
@@ -14,7 +16,7 @@ class PagesController < ApplicationController
     @question = @question_group.questions.build
     @answer = @question.answers.build
     if @question_group.save
-      format.json { render action:}
+      # format.json { render action: }
       redirect_to root_path
     else
       render :new

@@ -1,25 +1,31 @@
 
 
+<% form_for @question_group, url: new_page_path do |f| %>
 
 <% @survey_questions.each do |k,surveytitle| %>
   <% if surveytitle.kind_of?(String) %>
     <%= surveytitle %>
+    <%= f.hidden_field @question, :value => surveytitle %>
   <%else%>
-    <% surveytitle.each do |all_questions| %>
+    <p><% surveytitle.each do |all_questions| %>
       <% all_questions.each do |k,q| %>
         <% q.each do |q,o| %>
-          <%= q %>
-          <% o.each do |o, options| %>
-            <% options.each do |k,v| %>
-              <%= v %>
-            <%end%>
+        <%= f.fields_for @questions do |builder| %>
+          <%= f.hidden_field @question, :value => q, :f => builder %></p>
           <%end%>
+          <p><% o.each do |o, options| %>
+              <% @array = [] %>
+            <% options.each do |k,v| %>
+              <% @array << [k,v] %>
+
+        <%end%>
+            <%= f.select @answer, @array %>
+            <%end%></p>
         <%end%>
       <%end%>
     <%end%>
   <%end%>
 <%end%>
-<% form_for @survey, url: new_page_path do |f| %>
 
 <%= f.submit "submit" %>
 
