@@ -32,7 +32,6 @@ def new
   end
 
   def show
-    # p morning_params
     @morning_survey = MorningSurvey.last
     p @morning_survey
   end
