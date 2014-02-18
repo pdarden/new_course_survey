@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     @number = 1
     @survey_questions = get_json
     # @question_group = QuestionGroup.new(:survey_title => @survey_questions["survey_title"])
-    @page = MorningSurvey.new#(:survey_title => @survey_questions["survey_title"])
+    @pagesaf = MorningSurvey.new#(:survey_title => @survey_questions["survey_title"])
     @question_array = []
     @option_array = []
     @survey_questions["questions"].each do |bam|
