@@ -4,7 +4,6 @@
 <ul>
 
   <%= form_for @page do |f| %>
-  <% bam = [] %>
   <% answered_questions_array = [] %>
   <% answered_answers_array = [] %>
   <% @question_array.each_with_index do |question, index| %>
@@ -13,20 +12,15 @@
     <% answered_questions_array << question %>
 
     <% @option_array[index][0].each do |optionNumber, option| %>
-    <%= poop = radio_button_tag index, option %>
+    <%= radio_button_tag index, option %>
     <%= label_tag option, option %>
-    <% bam << poop %>
-    <% answered_answers_array << params["#{index}"] %>
     <%end%>
     <%end%>
 
   </li>
   <%= f.hidden_field :question, :value => answered_questions_array %>
-  <%= f.hidden_field :answer, :value => @fart %>
   <%= f.submit "submit" %>
   <%end%>
 </ul>
-
-<%# form_for @question_group, url: new_page_path do |f| %>
 
 
