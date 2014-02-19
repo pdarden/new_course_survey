@@ -3,7 +3,7 @@
 
 <ul>
 
-  <%= form_for @page, :builder => AwesomeForm do |f| %>
+  <%= form_for @page do |f| %>
   <% answered_questions_array = [] %>
   <% answered_answers_array = [] %>
   <% @question_array.each_with_index do |question, index| %>
@@ -12,10 +12,9 @@
     <% answered_questions_array << question %>
 
     <% @option_array[index][0].each do |optionNumber, option| %>
-    <% tag_value = option %>
-    <%= f.options_radio_button :answer, tag_value %>
+    <%= f.radio_button_tag :answer, option, option %>
     <%= f.label option, option %>
-    <% answered_answers_array << tag_value %>
+    <% answered_answers_array << :answer %>
     <%end%>
     <%end%>
 
