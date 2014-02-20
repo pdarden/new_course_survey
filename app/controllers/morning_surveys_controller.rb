@@ -21,6 +21,10 @@ def new
     end
   end
 
+  def format_survey_response response
+    Hash[response.question.zip(response.answer)]
+  end
+
   def create
     survey_questions = get_json
     num = survey_questions["questions"].length
@@ -31,6 +35,10 @@ def new
     @morning_survey = MorningSurvey.create morning_params
     @morning_survey.update_attribute(:answer, the_answers.to_s)
     if @morning_survey.save
+      poop = format_survey_response @morning_survey
+      p "poop"
+      p poop
+      p "poop"
       # format.json { render action: }
       redirect_to morning_survey_path @morning_survey
     else
