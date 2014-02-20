@@ -14,17 +14,13 @@
     <% @option_array[index][0].each do |optionNumber, option| %>
     <%= radio_button_tag index, option %>
     <%= label_tag option, option %>
-    <% answered_answers_array << option %>
     <%end%>
     <%end%>
 
   </li>
   <%= f.hidden_field :question, :value => answered_questions_array %>
-  <%= f.hidden_field :answer, :value => answered_answers_array %>
   <%= f.submit "submit" %>
   <%end%>
 </ul>
-
-<%# form_for @question_group, url: new_page_path do |f| %>
 
 
