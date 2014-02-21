@@ -1,7 +1,6 @@
 NewCourseSurvey::Application.routes.draw do
-  root 'pages#index'
-  resources :pages
-  resources :morning_surveys
+  root 'morning_surveys#index'
+  resources :morning_surveys, except: [:update, :edit, :destroy] #[:index, :new, :create, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

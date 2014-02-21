@@ -1,2 +1,9 @@
-<%= @morning_survey.question %>
-<%= @morning_survey.answer %>
+<% @results.each do |q,a| %>
+  <ul>
+    <li><%= q %>
+        <%= a %>
+    </li>
+  </ul>
+<% end %>
+
+<%= link_to "another survey", root_path %>

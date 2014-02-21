@@ -1,7 +1,6 @@
 class MorningSurveysController < ApplicationController
 
 def new
-    # binding.pry
     @number = 1
     @survey_questions = get_json
     @page = MorningSurvey.new
@@ -31,7 +30,6 @@ def new
     @morning_survey = MorningSurvey.create morning_params
     @morning_survey.update_attribute(:answer, the_answers.to_s)
     if @morning_survey.save
-      # format.json { render action: }
       redirect_to morning_survey_path @morning_survey
     else
       render :new
@@ -39,7 +37,10 @@ def new
   end
 
   def show
-    @morning_survey = MorningSurvey.last
+    survey = MorningSurvey.last
+    survey_questions = get_json
+    @results = format_survey_response survey_questions["survey_title"], survey
+    # send these @results.to_json
   end
 
    private
