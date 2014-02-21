@@ -21,8 +21,30 @@ def new
     end
   end
 
+  def arrify long_str
+    strs = long_str.split('", "')
+    p "strs"
+    p strs
+    p "strs_______"
+    strs[0].gsub!(/\[/, '')
+    strs[-1].gsub!(/\]/, '')
+    strs.map! do |str|
+      # str.to_s
+      str.gsub(/"/, '')
+      # str.gsub(/\]/, '')
+      # str.gsub(/\[/, '')
+    end
+    strs
+  end
+
   def format_survey_response response
-    Hash[response.question.zip(response.answer)]
+    p "response______________"
+    p response.question
+    p response.answer
+    p "response______________"
+    questions = arrify(response.question)
+    answers = arrify(response.answer)
+    Hash[questions.zip(answers)]
   end
 
   def create
