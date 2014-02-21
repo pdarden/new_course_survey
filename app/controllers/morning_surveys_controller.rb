@@ -1,4 +1,5 @@
 class MorningSurveysController < ApplicationController
+require 'json'
 
 def new
     @number = 1
@@ -39,8 +40,8 @@ def new
   def show
     survey = MorningSurvey.last
     survey_questions = get_json
-    @results = format_survey_response survey_questions["survey_title"], survey
-    # send these @results.to_json
+    @results = hash_survey_response survey_questions["survey_title"], survey
+    @object = json_survey_response @results
   end
 
    private
