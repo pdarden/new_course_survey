@@ -19,9 +19,11 @@ class ApplicationController < ActionController::Base
       strs
     end
 
-  def format_survey_response response
+  def format_survey_response title, response
     questions = arrify(response.question)
     answers = arrify(response.answer)
+    questions.unshift("survey title:")
+    answers.unshift(title)
     Hash[questions.zip(answers)]
   end
 

@@ -30,7 +30,6 @@ def new
     @morning_survey = MorningSurvey.create morning_params
     @morning_survey.update_attribute(:answer, the_answers.to_s)
     if @morning_survey.save
-      # format.json { render action: }
       redirect_to morning_survey_path @morning_survey
     else
       render :new
@@ -39,7 +38,9 @@ def new
 
   def show
     survey = MorningSurvey.last
-    @results = format_survey_response survey
+    survey_questions = get_json
+    @results = format_survey_response survey_questions["survey_title"], survey
+    # send these @results.to_json
   end
 
    private
