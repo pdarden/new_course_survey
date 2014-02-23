@@ -9,22 +9,40 @@ class ApplicationController < ActionController::Base
     ActiveSupport::JSON.decode(survey)
   end
 
-  def arrify long_str
-      strs = long_str.split('", "')
-      strs[0].gsub!(/\[/, '')
-      strs[-1].gsub!(/\]/, '')
-      strs.map! do |str|
-        str.gsub(/"/, '')
-      end
-      strs
+  def arrify_q questions
+    strs = questions.split('", "')
+    strs[0].gsub!(/\[/, '')
+    strs[-1].gsub!(/\]/, '')
+    strs.map! do |str|
+      str.gsub(/"/, '')
+      str.to_sym
     end
+    strs
+  end
 
-  def format_survey_response title, response
-    questions = arrify(response.question)
-    answers = arrify(response.answer)
+  def arrify_a answers
+    strs = answers.split('", "')
+    strs[0].gsub!(/\[/, '')
+    strs[-1].gsub!(/\]/, '')
+    strs.map! do |str|
+      str.gsub(/"/, '')
+    end
+    strs
+  end
+
+  def hash_survey_response title, response
+    questions = arrify_q(response.question)
+    answers = arrify_a(response.answer)
     questions.unshift("survey title:")
     answers.unshift(title)
     Hash[questions.zip(answers)]
+  end
+
+  def json_survey_response results
+    obj = results.each do |q,a|
+      q.to_sym
+    end
+    obj.to_json
   end
 
 end
